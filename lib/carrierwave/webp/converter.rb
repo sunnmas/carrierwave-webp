@@ -10,7 +10,8 @@ module CarrierWave
           img          = yield(img) if block_given?
           webp_path    = "#{path}.webp"
           old_filename = filename
-
+          # Конвертируем картинку в RGB:
+					`convert -colorspace RGB #{path} #{path}`
           ::WebP.encode(path, webp_path, options)
 
           # XXX: Hacks ahead!
